@@ -1,12 +1,12 @@
 @Entry
 @ComponentV2
-export struct HomePage {
-  @Local message: string = 'Home';
+export struct SettingsPage {
+  @Local message: string = 'Settings';
 
   build() {
     RelativeContainer() {
       Text(this.message)
-        .id('HomeHelloWorld')
+        .id('SettingsPageHelloWorld')
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
         .alignRules({

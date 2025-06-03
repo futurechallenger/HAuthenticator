@@ -1,4 +1,5 @@
 import { HomePage } from './Home';
+import { SettingsPage } from './Settings';
 
 @Entry
 @Component
@@ -9,28 +10,23 @@ struct Index {
   build() {
     Column() {
       Navigation(this.pageInfo) {
-        // Tabs({ barPosition: BarPosition.End }) {
-        //   TabContent() {
-        //     Text("首页").fontSize(38)
-        //   }.tabBar("Home")
-        //
-        //   TabContent() {
-        //     Text("设置").fontSize(38)
-        //   }.tabBar("设置")
-        // }
-        // .height('100%')
-        // .width('100%')
-        List(){
-          ListItem(){
-            Text("Home page")
-          }
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            HomePage();
+          }.tabBar("Home")
+
+          TabContent() {
+            SettingsPage();
+          }.tabBar("设置")
         }
+        .height('100%')
+        .width('100%')
       }.mode(NavigationMode.Auto)
       .navDestination((name: string, params: Map<string, string>) => {
         console.log('Nav params', params);
 
         switch(name) {
-          case 'Home':
+          case '首页':
             return HomePage();
             default:
               return HomePage();
@@ -38,12 +34,13 @@ struct Index {
       })
       .menus([
         {
-          value: "Home", action: () => {}
+          value: "Search", action: () => {}
         },
         {
-          value: "Home", action: () => {}
+          value: "Add", action: () => {}
         }
-      ]).toolbarConfiguration([
+      ])
+      .toolbarConfiguration([
         {
           value: "Home", action: () => {
             console.log('Toolbar config 1 clicked')
@@ -53,6 +50,7 @@ struct Index {
           value: "Settings",
           action: () => console.log("Tab settings clicked")
         }])
+      .hideToolBar(true)
     }
   }
 }
